@@ -1,5 +1,3 @@
-
-
 #Needs to keep sequence that has no Ns, add a fasta header, and rename file.
 #arg[1]: the file name you want all of the parsed sequences copied to.
 #arg[2]... file names of sequences to be parsed.
@@ -41,7 +39,7 @@ for i in range(len(sys.argv)):
 		print("Finding sequence with no Ns")
 	else:
 		print("No Ns in sequence")
-
+	"""
 	tempSeq = '>' + fileName + "\n"
 	upSeq = '>' + fileName + "\n"
 	print("Assigned supSeq: %s" % upSeq)
@@ -64,10 +62,27 @@ for i in range(len(sys.argv)):
 				print("Ongoing upSeq %s" % upSeq)
 
 			tempSeq = '>' + fileName + "\n"
+	"""
 
-			
 	#allgn all sequences > 100bases
+	
+	tempSeq = ""
+	for nt in fSeq:
+		if nt != 'N':
+			tempSeq += nt
+		else:
+			#print("Current N-less sequence is %d bases long and has seq %s" % (count, tempSeq))
+			#print("Input sequence: %s" % fSeq)
+			#input("Press enter")
+			if len(tempSeq) > 100:
+				lenTempSeq = str(len(tempSeq))
+				seqName = fileName.rstrip('.txt')
+				seqName += '_' + lenTempSeq + '\n'
+				seqName += tempSeq + '\n'
+				of.write(seqName)
 
+			tempSeq = ""
+	"""
 	upSeq += '\n'
 	print("")
 	print('There are %d sequences over 100 bases \n' % len(seqList))
@@ -82,4 +97,5 @@ for i in range(len(sys.argv)):
 	print("Writing: ", outFile)
 
 	of.write(upSeq)
+	"""
 of.close()
