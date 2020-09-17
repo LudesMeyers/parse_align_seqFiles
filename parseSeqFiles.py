@@ -64,7 +64,7 @@ for i in range(len(sys.argv)):
 			tempSeq = '>' + fileName + "\n"
 	"""
 
-	#allgn all sequences > 100bases
+	#align all sequences > 100bases
 	
 	tempSeq = ""
 	for nt in fSeq:
@@ -76,7 +76,7 @@ for i in range(len(sys.argv)):
 			#input("Press enter")
 			if len(tempSeq) > 100:
 				lenTempSeq = str(len(tempSeq))
-				seqName = fileName.rstrip('.txt')
+				seqName = '>' + fileName.rstrip('.txt')
 				seqName += '_' + lenTempSeq + '\n'
 				seqName += tempSeq + '\n'
 				of.write(seqName)
